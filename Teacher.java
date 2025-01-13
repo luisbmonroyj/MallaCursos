@@ -50,6 +50,9 @@ public BigInteger getEmail (){
   public String toInsertValues (){
     return BigInteger.toString(this.id)+"'"+this.name+"','"+this.lastname+"','"+this.email+"'";
   }
+  public String toUpdateValues (){
+    return "id = "+BigInteger.toString(this.id)+", name = '"+this.name+"', lastname = '"+this.lastname+"', email = '"+this.email+"'";
+  }
 
   
 } 
