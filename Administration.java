@@ -15,12 +15,14 @@ public class Administration {
       
     }
 
-    public static void insertCourse(){
-      Course curso = new Course();
-      String insertString = "INSERT INTO course (name,description,duration,price,beginningDate,idTeacher) VALUES ("+curso.toInsertValues()+")";
-      insertValues (insertString,false);
-      
+       public static void insertTeacher(Teacher teacher){
+    String insertString = "INSERT INTO teacher (id,name,lastname,email) VALUES ("+teacher.toInsertValues()+")";
+  insertValues (insertString,false);
+  }
 
+    public static void insertCourse(Course curso){
+    String insertString = "INSERT INTO course (name,description,duration,price,beginningDate,idTeacher) VALUES ("+curso.toInsertValues()+")";
+  insertValues (insertString,false);
   }
 
   public static void insertValues (String query, boolean echo){
