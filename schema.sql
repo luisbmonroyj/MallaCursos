@@ -5,12 +5,12 @@ CREATE TABLE "teacher" (
   "id" BIGINT NOT NULL,
   "name" TEXT NOT NULL,
   "lastname" TEXT NOT NULL,
-  "email" TEXT NOT NULL,
+  "email" TEXT NOT NULL UNIQUE,--SECURITY REASONS, to avoid cross matches
   PRIMARY KEY ("id")
 );
 
 CREATE TABLE "course" (
-  "name" TEXT NOT NULL,
+  "name" TEXT NOT NULL UNIQUE,
   "description" TEXT NOT NULL,
   "duration" INTEGER NOT NULL,
   "price" DOUBLE NOT NULL DEFAULT 0.0,
