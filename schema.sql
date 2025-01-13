@@ -1,3 +1,7 @@
+CREATE DATABASE "malla";
+ALTER USER username WITH PASSWORD 'password';
+USE "malla";
+
 DROP TABLE IF EXISTS "course";
 DROP TABLE IF EXISTS "teacher";
 
