@@ -4,7 +4,7 @@ import java.sql.SQLException;
 
 public class Administration {
 
-    private static String url = "jdbc:sqlite:bikelog.db";
+    private static String url = "jdbc:postgresql://localhost:5432/malla"";
     private static Scanner scanner = new Scanner(System.in);
     private String username = "username";
     private String password = "password";
@@ -12,21 +12,20 @@ public class Administration {
     public static void main(String[] args){
       System.out.println("running");
        // Register the PostgreSQL driver
-      
     }
     
 @create
 public static void insertTeacher(Teacher teacher){
     String insertString = "INSERT INTO teacher (id,name,lastname,email) VALUES ("+teacher.toInsertValues()+")";
-  insertValues (insertString,false);
+  execute (insertString,false);
   }
 
 public static void insertCourse(Course curso){
     String insertString = "INSERT INTO course (name,description,duration,price,beginningDate,idTeacher) VALUES ("+curso.toInsertValues()+")";
-  insertValues (insertString,false);
+  execute (insertString,false);
   }
-
-public static void insertValues (String query, boolean echo){
+    
+public static void execute (String query, boolean echo){
     Class.forName("org.postgresql.Driver");
     try(Connection connection = DriverManager.getConnection(jdbcUrl, username, password){
       Statement statement = connection.createStatement();
@@ -40,6 +39,8 @@ public static void insertValues (String query, boolean echo){
     connection.close();
     }
   }
+
+
 @read
 public static Teacher[] teachers (String where) {
         int counter = 0;
@@ -106,9 +107,29 @@ public static int getRowCount (String table, boolean orderByDate) {
             {e.printStackTrace(System.err); }
         
     return counter;
-    }
+}
 
-  
-    
+@update
+public static void updateTeacher(Teacher teacher){
+    String updateString = "UPDATE teacher SET "+teacher.toUpdateValues();
+  execute (updateString,false);
+  }
+
+public static void updateCourse(Course curso){
+    String updateString = "UPDATE course SET "+curso.toUpdateValues();
+  execute (updateString,false);
+  }
+
+@delete
+public static void deleteCourse (Course course){
+    //NAME is unique so this is enough
+    String deleteString = "DELETE FROM course WHERE name = '"+course.getName()+"'";
+    execute (deleteString,false);
+}
+public static void deleteTeacher (Teacher professor){
+    //id is unique in PK so this is enough
+    String deleteString = "DELETE FROM teacher WHERE id = "+professor.getId();
+    execute (deleteString,false);
+}     
 
 }
