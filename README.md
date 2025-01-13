@@ -27,6 +27,7 @@ INSERT INTO course (name,description,duration,price,beginningDate,idTeacher) VAL
 
 ### READING FROM COURSE
 SELECT idTeacher FROM course WHERE name = "Backend101";
+SELECT SUM (idTeacher) FROM course WHERE idTeacher = (SELECT id FROM teacher where name = 'pitagoras');
 
 ### UPDATING COURSE
 UPDATE course SET description = "el curso mas facil de backend. aprovecha descuento", price = 652000 WHERE name = Backend101;
@@ -37,7 +38,7 @@ not recommended, PLEASE study the option of doing a softdeletion instead
 DELETE FROM course WHERE price > 1000000;
 
 SOFT DELETION
-
+--a temptable must be created
 INSERT INTO pastcourses (name,description,duration,price,beginningDate,idTeacher) SELECT * FROM course WHERE price > 1000000;
 
 
