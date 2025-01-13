@@ -65,4 +65,16 @@ public class Course {
   public void setIDTeacher (BigInteger idTeacher){
     this.idTeacher= idTeacher;
   }
+
+  public String toInsertValues(){
+    return "'"+this.name+"','"+this.description+"',"+Integer.toString(this.duration)+","+
+      Double.toInteger(this.price)+",'"+beginningDate.toString+"',"+BigInteger.toString(this.idTeacher);
+    
+  }
+
+  public String toUpdateValues(){
+   return "name = '"+this.name+"', description = '"+this.description+"', duration = "+Integer.toString(this.duration)+", price"+
+      Double.toInteger(this.price)+",beginningDate = '"+beginningDate.toString+"', idTeacher = "+BigInteger.toString(this.idTeacher);
+   }
+  
 }
